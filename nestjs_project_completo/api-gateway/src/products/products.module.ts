@@ -1,0 +1,24 @@
+import { Module } from "@nestjs/common";
+import { ProductsService } from './products.service';
+import { ProductsController } from './products.controller';
+import { ClientsModule, Transport } from "@nestjs/microservices";
+import 'dotenv/config';
+
+@Module({
+  imports: [
+    ClientsModule.register([
+      {
+        name: 'PRODUCTS_SERVICE',
+        transport: Transport.NATS,
+        options: {
+          // Si NATS_URL está indefinido, usa 'nats://localhost:4222'
+          servers: [process.env.NATS_URL ?? 'nats://localhost:4222'],
+        },
+      },
+    ]),
+  ],
+  controllers: [ProductsController],
+  providers: [ProductsService],
+})
+export class ProductsModule {}
+
