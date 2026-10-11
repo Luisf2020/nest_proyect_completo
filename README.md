@@ -1,76 +1,77 @@
 # NestJS Microservices Platform
 
-![NestJS](https://img.shields.io/badge/NestJS-Microservices-E0234E?logo=nestjs&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-Backend-3178C6?logo=typescript&logoColor=white)
-![NATS](https://img.shields.io/badge/NATS-Messaging-27AAE1)
-![Docker](https://img.shields.io/badge/Docker-Orchestration-2496ED?logo=docker&logoColor=white)
-![JWT](https://img.shields.io/badge/Auth-JWT-111827)
+![stack: NestJS](https://img.shields.io/badge/stack--NestJS-0d9488?style=flat-square) ![stack: TypeScript](https://img.shields.io/badge/stack--TypeScript-0d9488?style=flat-square) ![stack: NATS](https://img.shields.io/badge/stack--NATS-0d9488?style=flat-square) ![stack: Docker](https://img.shields.io/badge/stack--Docker-0d9488?style=flat-square) ![IA: asistido](https://img.shields.io/badge/IA--asistido-6366f1?style=flat-square)
 
-Arquitectura backend basada en **microservicios con NestJS, TypeScript, NATS y Docker**. El proyecto separa responsabilidades entre autenticación/usuarios, productos y un API Gateway centralizado.
+Arquitectura de microservicios con NestJS y TypeScript: autenticacion/usuarios, productos y un API Gateway, comunicados por NATS y orquestados con Docker.
 
-## Arquitectura
+**Tipo:** Backend de microservicios · **Complejidad:** Avanzado
 
-```text
+## Problema que resuelve
+
+Evitar un monolito unico para un dominio que ya se separa de forma natural (usuarios y productos), manteniendo un punto de entrada comun.
+
+## Solucion implementada
+
+Tres servicios NestJS independientes con su propio modulo, comunicados por mensajeria NATS y expuestos por un API Gateway; el entorno local se levanta con docker-compose.
+
+### Funcionalidades principales
+
+- API Gateway como punto de entrada HTTP
+- Servicio de usuarios con autenticacion
+- Servicio de productos con DTOs y entidades
+- Mensajeria entre servicios con NATS
+- Infraestructura local con docker-compose
+
+## Stack
+
+- NestJS
+- TypeScript
+- NATS
+- Docker
+- JWT
+
+## Estructura
+
+```
 nestjs_project_completo/
-├── api-gateway/       # Punto de entrada HTTP
-├── users-service/     # Registro, autenticación y usuarios
-├── products-service/  # Gestión de productos
-└── docker-compose.yml # Infraestructura local
+  api-gateway/       # entrada HTTP
+  users-service/     # registro y autenticacion
+  products-service/  # gestion de productos
+  docker-compose.yml
 ```
 
-## Características
-
-- API Gateway como capa de entrada.
-- Comunicación asíncrona entre servicios mediante NATS.
-- Autenticación JWT.
-- Autorización basada en roles.
-- Separación de dominios por microservicio.
-- Contenedores e infraestructura local con Docker Compose.
-- Arquitectura preparada para escalar servicios de manera independiente.
-
-## Endpoints principales
-
-```http
-POST /auth/register
-POST /auth/login
-POST /products
-DELETE /products/:id
-```
-
-Los endpoints protegidos requieren token JWT y algunos flujos contemplan autorización por rol.
-
-## Ejecución
+## Puesta en marcha
 
 ```bash
-git clone https://github.com/Luisf2020/nest_proyect_completo.git
-cd nest_proyect_completo/nestjs_project_completo
-docker-compose up -d
+cd nestjs_project_completo
+docker compose up
 ```
 
-Después instala y ejecuta cada servicio:
+## Complejidad del proyecto
 
-```bash
-cd api-gateway && npm install && npm run start:dev
-cd ../users-service && npm install && npm run start:dev
-cd ../products-service && npm install && npm run start:dev
-```
+**Nivel: Avanzado** — Multiples servicios desplegables, comunicacion asincrona entre ellos, autenticacion y orquestacion con contenedores.
 
-## Competencias demostradas
+El nivel describe la complejidad tecnica del proyecto, no el grado de dominio de quien lo escribio.
 
-- Diseño de microservicios.
-- NestJS y TypeScript.
-- Mensajería con NATS.
-- API Gateway.
-- Autenticación JWT.
-- Control de acceso por roles.
-- Docker Compose.
-- Separación de responsabilidades y dominios.
+## Despliegue
+
+Plataforma de servicios con mensajeria y contenedores; no es una pagina web desplegable.  
+El codigo fuente esta disponible en este repositorio.
+
+## Transparencia sobre IA
+
+Este proyecto se desarrollo con asistencia de inteligencia artificial (generacion de codigo,
+revision y documentacion). El codigo fue leido, ejecutado y probado manualmente. No se declaran
+clientes, metricas ni resultados que no puedan verificarse.
 
 ## Autor
 
-**Luis Felipe Zuniga León**  
-Ingeniería de Sistemas · Full Stack · Backend · Cloud
+**Luis Felipe Zuniga Leon** — Desarrollador de software asistido por IA
+
+- GitHub: <https://github.com/Luisf2020>
+- Correo: developerluis2@gmail.com
+- WhatsApp: +504 3237 0056
 
 ---
 
-Proyecto de portafolio orientado a arquitecturas backend distribuidas con NestJS.
+_Proyecto de portafolio. El desarrollo se apoyo en herramientas de IA bajo revision tecnica humana._
